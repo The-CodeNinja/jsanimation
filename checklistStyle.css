@@ -1,0 +1,134 @@
+
+
+
+body{
+ 
+   background-color:#32a6cd;
+ 
+}
+
+
+
+li{
+
+    background-color:#addbeb;
+
+    margin:4px;
+
+    padding:8px;
+
+    
+}
+
+
+
+
+
+#add-button{
+
+      background-color:#43b7de;
+
+      border:0px;
+
+      padding-left:12px;
+
+      padding-right:12px;
+
+      color :#fff;
+
+      font-size : 37px;
+
+      border-radius : 50%;
+
+      top:445px;
+
+      left:300px;
+
+      position:absolute;
+
+    
+}
+
+
+#list{
+ 
+   overflow:scroll;
+
+    height:400px;
+
+}
+
+
+#checklist button{
+ 
+   position:relative;
+
+    bottom:2px;
+
+    background-color : #ff6666;
+
+    border-radius : 50% ;
+
+    border: 0px ;
+
+    
+ 
+
+    margin-left:0px;
+
+
+}
+
+.close{
+   padding-left: 5px;
+
+    padding-right: 5px;
+ 
+    left :  500px ;
+
+}
+.edit{
+    padding-left: 5px;
+
+    padding-right: 5px;
+ 
+    left :  510px ;
+
+}
+
+
+#okButtn{
+left: 10px;
+}
+
+lable{
+   margin-left : 40px;
+   font-size: 20px; 
+   font: status-bar ;
+}
+
+
+
+#text-input{
+ 
+    background-color:#addbeb;
+
+    position:absolute;
+
+    top:450px;
+
+    width:270px;
+
+    padding:10px;
+
+    border-color:#2885a4;
+
+    border-width:1px;
+
+}
+
+#empty{
+   color: #addbeb;
+   font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+   font-size: 25px;
+}
