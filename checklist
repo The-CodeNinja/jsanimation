@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+
+
+        <title>check list 3</title>
+
+       <link href="checklistStyle.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        
+
+<div id="list">
+  <!-- to make it scrollable-->
+
+<ol id = "checklist" >
+
+</div>
+
+  
+
+<input type="text"   placeholder = "Add new item to list..." id ="text-input">
+  <button id="add-button"   onclick=' textFunc() '    >+</button>
+
+
+
+
+
+
+
+<script>
+
+
+   var x = 1;
+   var clzButts   = new Array;
+   var listItem  = new Array;
+   var lables = new Array; 
+   var editButts = new Array; 
+   var chkButts =   new Array; 
+  
+
+function textFunc(){
+
+   
+   
+                 // check if the item is empty
+  
+    
+             var i=1
+  
+                 var text = document.getElementById('text-input').value
+
+  
+                 if (text == "" || text == " "*i  ){
+
+                                                                          alert("empty item")
+      
+                                                                         document.getElementById('text-input').value = ""
+ 
+                                                                         }
+
+                else{
+
+                          //creat new list item
+ 
+
+//x creates new id each time you press "add"
+ 
+
+                         var body = document.createElement("LI") 
+      
+    
+               body.id = "new_item"+x 
+
+   
+//create new checkbox 
+                        var checkbox = document.createElement("INPUT") 
+
+                        checkbox.type="checkbox"
+
+    
+                    checkbox.className="checkbox"
+
+	     checkbox.style.marginRight = "-75px"
+
+//create new lable
+                       var checkbox_lable = document.createElement("LABLE") 
+  
+ 
+                    // lable = user input
+                       checkbox_lable.id = "checkbox_lable" + x 
+                       checkbox_lable.innerHTML =  document.getElementById('text-input').value
+ 
+
+//create remove button
+ 
+                     var remove = document.createElement("BUTTON")
+ 
+                      remove.innerHTML= "&times"    
+ 
+             
+
+ 
+        remove.className = "close"
+
+// create edit button 
+                      var editButton = document.createElement("BUTTON")
+ 
+                      editButton.innerHTML= "edit"    
+ 
+             
+
+ 
+        editButton.className = "edit"
+
+
+//add checkbox,button,label to body and add body to 'ol'
+
+                       document.getElementById("checklist").appendChild(body)
+                       
+document.getElementById("new_item"+x).appendChild(checkbox)
+  
+ 
+                    
+document.getElementById("new_item"+x).appendChild(remove)
+                       document.getElementById("new_item"+x).appendChild(editButton)
+
+
+
+//add user input to list item 
+
+                       document.getElementById("new_item"+x).appendChild(checkbox_lable) 
+
+
+
+
+//increment of x for new id's
+ 
+                       x++
+
+// emptying input box
+                       document.getElementById('text-input').value = ""
+
+
+                          
+                               }//else ended
+
+
+
+// 'i' makes sure that no amount of space should be allowed 
+ i++
+
+
+
+// refresh info about number of items each time a new item is added
+
+    clzButts  = document.getElementsByClassName("close")
+    listItem  = document.getElementsByTagName("li")
+    lables = document.getElementsByTagName("lable")
+    editButts = document.getElementsByClassName("edit")
+    chkButts = document.getElementsByClassName("checkbox")
+}//function ended
+
+
+
+
+setInterval(function(){
+
+    for( ind = 0 ; ind < listItem.length ; ind++){
+        clzButts[ind].setAttribute ("onclick", "listItem[" + ind + "].remove(listItem[0])")
+    }
+
+
+}, 10)
+
+
+// setInterval repeates the process again and again
+// if it is not done then for gets executed once only at begining of program
+
+setInterval(function(){
+    for(i = 0 ; i < listItem.length ; i ++ ){         
+        editButts[i].setAttribute("onclick", "editFunc("+ i +")" )          
+     }// for 
+} , 10 )
+
+var editInput;  // it has to be global because it is used in save() fn asa well
+
+function editFunc(index){
+
+editInput = document.createElement("INPUT")
+editInput.value = lables[index].innerHTML
+editInput.id = "editInput"
+
+var erase = document.createElement("BUTTON")
+erase.innerHTML = "-"
+erase.id = "eraseButton" 
+erase.setAttribute("onclick", "document.getElementById('editInput').value = ''  ")
+erase.style.marginLeft = "30px"
+
+var okButtn = document.createElement("BUTTON")
+okButtn.innerHTML = "ok"
+okButtn.id = "okButtn"
+okButtn.setAttribute("onclick" , "save("+index+")")
+lables[index].innerHTML = ""
+
+for(i= 0 ; i < listItem.length ; i++){ 
+chkButts[i].style.display = "none"
+clzButts[i].style.display = "none"
+editButts[i].style.display = "none"
+document.getElementById("text-input").style.display = "none"
+document.getElementById("add-button").style.display = "none"
+
+
+} // for
+listItem[index].appendChild(editInput)
+listItem[index].appendChild(erase)
+listItem[index].appendChild(okButtn)
+
+} // function
+
+function save(index){
+var i = 0 ;
+   if(editInput.value == "" || editInput.value== " "*i){ alert("empty item"); 
+    editInput.value == ""
+ }
+ else{
+
+lables[index].innerHTML = editInput.value
+
+listItem[index].removeChild(document.getElementById("editInput"))
+listItem[index].removeChild(document.getElementById("eraseButton"))
+listItem[index].removeChild(document.getElementById("okButtn"))
+
+for(i= 0 ; i < listItem.length ; i++){ 
+chkButts[i].style.display = "inline"
+clzButts[i].style.display = "inline"
+editButts[i].style.display = "inline"
+document.getElementById("text-input").style.display = "inline-block"
+document.getElementById("add-button").style.display = "inline-block"
+} // for
+
+} // else
+
+i++
+} // function
+
+
+
+
+var imageIndex = Math.floor(Math.random()*16)
+var htmlBody = document.getElementsByTagName("body") 
+htmlBody[0].style.backgroundImage = "url('D:/programming/checklist/css/" + imageIndex +  ".jpg')"
+    </script>
+
+
+
+    </body>
+
+</html>
